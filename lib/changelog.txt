@@ -1,0 +1,194 @@
+---------------
+
+Idées pour le futur :
+# système de classement ?
+
+---------------
+
+À faire :
+# animations
+# boutique PayPal
+# confidentialité web
+# pubs interstitielles web
+# ajouter une animation de chargement pour les pubs bannières et ne l'afficher que pour les utilisateurs non premium
+# permettre aux premium de refaire les mots déjà faits et mettre un message aux non premium -> reste à mettre un message
+# permettre aux non-premium de refaire un mot en regardant une pub ?
+# ajouter un message pour dire "réservé aux premiums" quand un non-premium essaie de relancer un vieux mot
+
+# AJOUTER DES PUBLICITÉS UN PEU PARTOUT
+# SI L'UTILISATEUR EST PREMIUM, BIEN VERIFIER QU'IL N'A PAS DEMANDE DE REMBOURSEMENT APRES COUP
+
+À tester :
+# vérifier que les pubs s'affichent sur la version Web
+
+
+
+---------------
+
+Changelog
+
+20250901
+# inversion de la liste
+# réglage des différences de taille dans les lignes de mots
+# suppression du point d'interrogation pour les mots non faits
+# correction du problème de crash en cas de mauvais remplissage de la base de données
+
+20250821
+# réglage du throw dans le menu paramètre pour la version Web
+
+20250818
+# suppression de Stripe
+
+20250816
+# gradients sur la page principale
+# début du transfert des constantes dans des classes abstraites
+
+20250815
+# notifications pour Android
+
+20250814
+# correction du problème de perte de mémoire avec Data.listeMotsUser
+# finalisation de la version web pour upload
+
+20250813
+# finalisation du RGPD grâce à la validation de l'appli par AdMob
+
+20250810
+# paramètres -> fond blanc
+# terminer le tutoriel d'introduction
+
+20250807
+# réglage des problèmes de crash avec Navigator.pop()
+
+20250806
+# travail avec la base de données transféré dans "InitFirebase"
+# fin des fonctionnalités de la boutique pour Android
+# ajout de pubs interstitielles Android
+
+20250802
+# RGPD Android
+
+20250731
+# début Stripe
+
+20250730
+# provider pour l'affichage des pubs bannières
+
+20250729
+# réparation du problème avec les banner ads
+# empêcher la bannière de charger si l'onglet n'est pas actif
+# code pour les pubs bannières web
+
+20250728
+# connexion dans le version web
+# setup complet de la publicité pour Android (problème avec les banner ads)
+
+20250722
+# suppression des exemples au profit des traductions anglaises et russes
+# empêche l'utilisateur de jouer s'il n'est pas connecté
+# safe area
+# affiche un message d'erreur en cas d'impossibilité de connexion
+
+20250715
+# création des "loadings screens" (même pour le chargement du bool pour le tutoriel qu'il reste à créer)
+# création de la base du tutoriel d'introduction
+# ajout d'un bouton "Revoir le tutoriel de bienvenue" dans les paramètres
+
+20250710
+# ajout d'une animation "connexion en cours" sur la page principale et dans la boutique
+# ajout du menu "paramètre" (il reste encore des choses à ajouter qui sont inimplémentables pour le moment)
+# empêcher les mots trop loin dans le futur de s'afficher
+
+20250703
+# ajout d'une confirmation quand l'utilisateur veut abandonner au pendu
+
+20250630
+# bouton retour avec un disclaimer pour les activités
+# correction du bug à cause duquel la liste de mots ne se mettait pas à jour quand l'utilisateur sortait ou terminait un mot
+# fonctionnalité du bouton "faire le mot du jour" ; affiche un message si aucun mot n'est disponible
+# connexion automatique de l'utilisateur au lancement de l'appli
+# correction l'affichage de "ligne mot" : le bouton à droite ne rentre pas
+# correction des problèmes de rafraîchissement de la page lors de la connexion automatique ou non de l'utilisateur
+
+20250629
+# ajout d'un disclaimer quand l'utilisateur propose un mot au pendu
+# carte utilisateur complète
+# afficher "***" sur le menu principal si le mot n'a pas été fait ; affiche le mot s'il a été fait, qu'il ait été réussi ou raté
+
+20250627
+# correction du problème de lecture des dates "slashées", et donc du problème d'affichage des icônes sur le staut des mots (pas ouvert, raté, deviné)
+# correction du problème de "fitting" de l'illustration du pendu
+# ajout d'un bouton "principes" pour le pendu -> fonctionnel
+
+20250626
+# deviner le mot au pendu inscrit désormais le mot comme fait dans la DB
+
+20250623
+# finalisation du système de connexion
+# création du compte de l'utilisateur dans la DB s'il est inexistant
+# lecture des données de l'utilisateur dans la DB et synchronisation avec l'appli
+
+20250618
+# griser les touches jeu "compléter avec les lettres proposées"
+# le clavier d'adapte maintenant à l'espace disponible et occupe plusieurs lignes si nécessaire
+# la barre de progression avait des décalages
+# fin de la lecture de la base de données
+
+20250617
+# ajout d'un système de couleur et de durée aux flushbars
+# ajout d'animations au pendu
+# mélange des touches du clavier du jeu "compléter" à chaque tour
+# ajout d'animations au jeu "compléter"
+# ajout d'animations au jeu "trouve la bonne orthographe"
+# ajout d'animations au jeu "réécrire avec les lettres"
+# division par couleur des voyelles et des consonnes au pendu
+# adaptation du système de création de fausses orthographes pour fonctionner avec tous les mots, peu importe leur taille
+
+20250613
+# page de fin
+
+20250610
+# jeu "écrire avec les lettres proposées" entier
+# le pendu détecte désormais la victoire par les lettres
+# le pendu affiche désormais le mot entier en cas de victoire
+# réfection de toutes les activités avec un ListView
+
+20250605
+# fin du jeu "Trouve la bonne orthographe"
+
+20250602
+# fin du jeu "compléter"
+# début du jeu "trouve la bonne orthographe" -> reste à faire les boutons et leurs fonctionnalités
+
+20250526
+# système de passage d'une étape à la suivante pour le jeu "compléter"
+
+20250521
+# le gros du jeu "compléter" : reste seulement la détection "mot fini ou pas ?" et la victoire
+
+20250520
+# fin simpliste avec victoire/défaite pour le pendu
+# page avec les explications
+
+20250518
+# ajout des flushbars pour le pendu
+# fin du pendu (partie fonctionnelle)
+
+20250518
+# fin du coeur du pendu : reste seulement le mécanisme de victoire/défaite
+
+20250515
+# fin de l'écran d'introduction
+# avancées sur le pendu (lettres, images)
+
+20250514
+# création du moteur pour les activités
+# création de l'introduction (activités)
+
+20250513
+# création du design des boutons
+# initialisation de la base de données qui va contenir les mots
+
+20250512
+# réglage des providers pour que l'application ne renvoie pas d'erreur
+# création de la maquette du container avec les infos de l'utilisateur connecté

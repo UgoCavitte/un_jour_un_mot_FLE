@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "C:\\Users\\ucavi\\dev\\flutter\\packages\\flutter_tools\\gradle\\src\\main\\groovy\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\ucavi\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "C:\\Users\\ucavi\\OneDrive\\Bureau\\Programmation\\Programmes Android\\Un jour un mot\\Un jour un mot - Firebase\\un_jour_un_mot\\android\\app\\.cxx\\Debug\\6a702y16\\armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\ucavi\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "C:\\Users\\ucavi\\OneDrive\\Bureau\\Programmation\\Programmes Android\\Un jour un mot\\Un jour un mot - Firebase\\un_jour_un_mot\\android\\app\\.cxx\\Debug\\6a702y16\\armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
