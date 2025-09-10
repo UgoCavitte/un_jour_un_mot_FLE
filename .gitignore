@@ -5,6 +5,8 @@ firebase.json
 windows/
 ios/
 linux/
+macos/
+test/
 android/.gradle/
 android/local.properties
 .dart_tool/
