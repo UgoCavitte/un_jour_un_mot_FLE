@@ -7,12 +7,16 @@ ios/
 linux/
 macos/
 test/
+web/
+android/
 android/.gradle/
 android/local.properties
 .dart_tool/
 .flutter-plugins/
 .flutter-plugins-dependencies/
 AndroidManifest.xml
+.metadata
+pubspec.lock
 
 # Miscellaneous
 *.class
