@@ -1,4 +1,4 @@
-# un_jour_un_mot
+# Un jour un mot - FLE
 
 This project is a game for foreigners learning French. It lets them guess and learn a new word everyday.
 
