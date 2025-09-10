@@ -1,2 +1,0 @@
-C:/Users/ucavi/OneDrive/Bureau/Programmation/Programmes Android/Un jour un mot/Un jour un mot - Firebase/un_jour_un_mot/android/app/.cxx/Debug/vy520xc4/x86/CMakeFiles/edit_cache.dir
-C:/Users/ucavi/OneDrive/Bureau/Programmation/Programmes Android/Un jour un mot/Un jour un mot - Firebase/un_jour_un_mot/android/app/.cxx/Debug/vy520xc4/x86/CMakeFiles/rebuild_cache.dir
