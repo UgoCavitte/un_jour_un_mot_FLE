@@ -1,16 +1,5 @@
 # un_jour_un_mot
 
-A new Flutter project.
+This project is a game for foreigners learning French. It lets them guess and learn a new word everyday.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+It runs on Android and Web. Be carefule of the "ads.dart" file, since some code there can compile only for the Web.
