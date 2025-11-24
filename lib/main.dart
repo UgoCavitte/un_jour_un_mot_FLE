@@ -15,7 +15,7 @@ import 'package:un_jour_un_mot/pages/page_home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
+  await dotenv.load(fileName: "assets/.env");
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // Le reste de l'initialisation se fait après le runApp pour permettre l'affichage d'écrans de chargement
 
