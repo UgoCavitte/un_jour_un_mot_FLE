@@ -24,15 +24,19 @@ abstract class Data {
       EtapeInitialisation.checkingTutorial;
 
   // Liste utilisée par l'application pour son bon fonctionnement
-  static List<Mot> listeMots = [];
+  static List<MotNouveau> listeMots = [];
 
   // Liste des mots faits par l'utilisateur
-  static Map<DateTime, bool> listeMotsUser = {};
+  static Map<int, bool> listeMotsUser = {};
 
   static bool isPremium = false;
 
   // true = faut montrer, false = faut pas montrer
   static bool tutorielDebut = true;
+
+  static int firstAvailableID = -1; // TODO set this
+
+  static DateTime? lastDate; // TODO set this
 
   ///////////////////////////////////////////////////////////////
   ////////////////////////// FONCTIONS //////////////////////////
