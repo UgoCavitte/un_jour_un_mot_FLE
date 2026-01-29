@@ -30,6 +30,10 @@ class CarteMotsAAfficher extends StatelessWidget {
   }
 
   List<Widget> _getElements() {
+    return Data.listeMots.map((mot) => LigneMot(mot: mot)).toList();
+
+    // TODO OLD
+    /*
     DateTime maxDate = DateTime.now().add(
       Duration(days: maxJoursSuivantsAAfficher),
     );
@@ -41,6 +45,6 @@ class CarteMotsAAfficher extends StatelessWidget {
               ComparaisonDates.ulterieur,
         )
         .map((mot) => LigneMot(mot: mot))
-        .toList().reversed.toList();
+        .toList().reversed.toList();*/
   }
 }

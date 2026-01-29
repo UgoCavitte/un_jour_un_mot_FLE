@@ -157,6 +157,7 @@ class PageMots extends StatelessWidget {
     );
   }
 
+  // TODO
   Widget _boutonMotDuJour(BuildContext context) {
     return SizedBox(
       width: double.infinity,
@@ -166,7 +167,7 @@ class PageMots extends StatelessWidget {
         onPressed: () async {
           try {
             // Trouve le mot avec la date du jour
-            Mot motDuJour = Data.listeMots.firstWhere(
+            MotNouveau motDuJour = Data.listeMots.firstWhere(
               (test) =>
                   Dates.comparerDates(
                     dateRef: test.date,

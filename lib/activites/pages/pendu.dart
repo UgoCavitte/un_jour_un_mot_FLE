@@ -20,7 +20,7 @@ import 'package:un_jour_un_mot/misc/lettres.dart';
 import 'package:un_jour_un_mot/objects/mot.dart';
 
 class Pendu extends StatelessWidget {
-  final Mot mot;
+  final MotNouveau mot;
 
   const Pendu({super.key, required this.mot});
 
@@ -340,7 +340,7 @@ class ProviderPendu with ChangeNotifier {
 
   bool disclaimerMot = false;
 
-  late final Mot mot;
+  late final MotNouveau mot;
   final List<String> lettresFausses = [];
   final List<String> trouve = []; // Liste des lettres trouvées
   List<String> motDivise = [];
@@ -350,7 +350,7 @@ class ProviderPendu with ChangeNotifier {
 
   List<Image> illustrations = [];
 
-  void initialisation(Mot mot) {
+  void initialisation(MotNouveau mot) {
     this.mot = mot;
 
     // On divise le mot en lettres
@@ -484,8 +484,8 @@ class ProviderPendu with ChangeNotifier {
 
     // Met à jour la liste utilisée pour la sauvegarde sur la DB
     Data.listeMotsUser.addEntries([
-      MapEntry<DateTime, bool>(
-        mot.date,
+      MapEntry<int, bool>(
+        mot.id,
         motStatut == MotStatut.reussi ? true : false,
       ),
     ]);

@@ -20,7 +20,7 @@ import 'package:un_jour_un_mot/objects/mot.dart';
 import 'package:un_jour_un_mot/pages/page_home.dart';
 
 class MoteurActivitesMots extends StatelessWidget {
-  final Mot mot;
+  final MotNouveau mot;
 
   const MoteurActivitesMots({super.key, required this.mot});
 
@@ -145,7 +145,7 @@ class MoteurActivitesMots extends StatelessWidget {
 
         // Met à jour la liste utilisée pour la sauvegarde sur la DB
         Data.listeMotsUser.addEntries([
-          MapEntry<DateTime, bool>(mot.date, false),
+          MapEntry<int, bool>(mot.id, false),
         ]);
 
         // Puis on fait la sauvegarde

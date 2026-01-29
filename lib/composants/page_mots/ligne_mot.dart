@@ -22,7 +22,7 @@ import 'package:un_jour_un_mot/objects/mot.dart';
  */
 
 class LigneMot extends StatelessWidget {
-  final Mot mot;
+  final MotNouveau mot;
 
   const LigneMot({super.key, required this.mot});
 
@@ -39,8 +39,8 @@ class LigneMot extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Date
-              Expanded(child: _getElementDate()),
+              // ID
+              Expanded(child: _getElementID()),
               // Mot
               Expanded(child: _getElementMot()),
 
@@ -63,10 +63,10 @@ class LigneMot extends StatelessWidget {
     );
   }
 
-  Widget _getElementDate() {
+  Widget _getElementID() {
     return Padding(
       padding: ConstantesPaddingMargin.paddingElementLigneTableau,
-      child: MyTextLigneTableau(Dates.formaterDatePourAffichage(mot.date)),
+      child: MyTextLigneTableau(mot.id.toString()),
     );
   }
 
@@ -118,19 +118,12 @@ class LigneMot extends StatelessWidget {
       );
     }
 
-    ComparaisonDates compDates = Dates.comparerDates(
-      dateRef: DateTime.now(),
-      dateChecked: mot.date,
-    );
-
-    // Le mot est devinable car du jour ou bien réservé aux premiums car passé
-    if (compDates == ComparaisonDates.egal ||
-        compDates == ComparaisonDates.anterieur) {
+    // Le mot est devinable car [Data.firstAvailableID] correspond à son ID
+    if (Data.firstAvailableID == mot.id) {
       return Padding(
         padding: ConstantesPaddingMargin.paddingElementLigneTableau,
         child: MyButtonLancerMot(
-          premiumSiPasse:
-              compDates == ComparaisonDates.anterieur ? Data.isPremium : true,
+          premiumSiPasse: true, // TODO check this
           onPressed: () => lancerMot(mot: mot, context: context),
         ),
       );
@@ -143,7 +136,7 @@ class LigneMot extends StatelessWidget {
     );
   }
 
-  void lancerMot({required Mot mot, required BuildContext context}) async {
+  void lancerMot({required MotNouveau mot, required BuildContext context}) async {
     // Vérifie que l'utilisateur est connecté
     if (!Provider.of<ProviderConnect>(context, listen: false).isUserConnected) {
       if (await confirm(

@@ -13,9 +13,11 @@
  * Raison : chronophage et peu rentable
  */
 
+import 'package:un_jour_un_mot/data/data.dart';
+
 enum MotStatut { pasOuvert, reussi, rate }
 
-class Mot {
+abstract class Mot {
   final DateTime date; // jour, mois, année seulement
   final String mot;
   final String definition;
@@ -30,4 +32,21 @@ class Mot {
     // required this.exemple,
     required this.traductions,
   });
+
+  static void setFirstAvailableID() {
+    Data.firstAvailableID = -2;
+    for (int i = 0; i < Data.listeMots.length; i++) {
+      if (!Data.listeMotsUser.containsKey(i)) {
+        Data.firstAvailableID = i;
+      }
+    }
+    print("[app] First available id: ${Data.firstAvailableID}");
+  }
+}
+
+class MotNouveau extends Mot {
+  final int id; // remplace la date
+  MotStatut fait = MotStatut.pasOuvert;
+
+  MotNouveau({required this.id, required super.mot, required super.definition, required super.traductions, required super.date});
 }
