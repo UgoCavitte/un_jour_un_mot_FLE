@@ -1,3 +1,5 @@
+import 'package:un_jour_un_mot/objects/mot.dart';
+
 enum ComparaisonDates { anterieur, egal, ulterieur }
 
 enum PartiesDate { annee, mois, jour }
@@ -79,6 +81,7 @@ abstract class Dates {
     );
   }
 
+  // Dates with slashes and no zeroes
   static DateTime fromStringToDate(String string) {
     List<String> divided = string.split("");
 
@@ -86,15 +89,26 @@ abstract class Dates {
     List<String> month = [];
     List<String> day = [];
 
-    for (int i = 0; i < 8; i++) {
-      if (i < 4) {
-        year.add(divided[i]);
-      } else if (i < 6) {
-        month.add(divided[i]);
-      } else {
-        day.add(divided[i]);
-      }
+    // year
+    while (divided.first != "/") {
+      year.add(divided.first);
+      divided.removeAt(0);
     }
+    divided.removeAt(0);
+
+    // month
+    while (divided.first != "/") {
+      month.add(divided.first);
+      divided.removeAt(0);
+    }
+    divided.removeAt(0);
+
+    // day
+    while (divided.isNotEmpty) {
+      day.add(divided.first);
+      divided.removeAt(0);
+    }
+
 
     return DateTime(
       int.parse(year.join()),
