@@ -148,6 +148,9 @@ class MoteurActivitesMots extends StatelessWidget {
           MapEntry<int, bool>(mot.id, false),
         ]);
 
+        // Reset le prochain ID
+        Mot.setFirstAvailableID();
+
         // Puis on fait la sauvegarde
         await InitFirebase.enregistrerMotsFaits();
 

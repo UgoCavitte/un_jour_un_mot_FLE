@@ -38,15 +38,14 @@ abstract class Mot {
     for (int i = 0; i < Data.listeMots.length; i++) {
       if (!Data.listeMotsUser.containsKey(i)) {
         Data.firstAvailableID = i;
+        break;
       }
     }
-    print("[app] First available id: ${Data.firstAvailableID}");
   }
 }
 
 class MotNouveau extends Mot {
   final int id; // remplace la date
-  MotStatut fait = MotStatut.pasOuvert;
 
   MotNouveau({required this.id, required super.mot, required super.definition, required super.traductions, required super.date});
 }
