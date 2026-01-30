@@ -10,8 +10,10 @@ import 'package:un_jour_un_mot/objects/mot.dart';
 abstract class InitFirebase {
   static final FirebaseFirestore dataBase = FirebaseFirestore.instance;
 
+  
   // Récupère les mots depuis la base de données
   static Future<void> getMots() async {
+    /*OLD
     QuerySnapshot<Map<String, dynamic>> retrieved =
         await dataBase.collection(DbConsts.idListeMots).get();
 
@@ -31,9 +33,34 @@ abstract class InitFirebase {
               ).cast<String, String>(),
         ),
       );
+    }*/ // OLD END
+
+    var retrieved = await dataBase.collection(DbConsts.idListeMotsNouveaux).get();
+
+    Data.listeMots.clear();
+
+    for (var element in retrieved.docs) {
+      MotNouveau toAdd = MotNouveau(
+          id: element[DbConsts.idId] ?? -1,
+          mot: element[DbConsts.idMot] ?? "erreur",
+          definition: element[DbConsts.idDef] ?? "erreur",
+          traductions: Map.from(
+                (element[DbConsts.idTraductions] ?? {"EN": "Défaut", "RU": "Défaut"}) as Map<String, dynamic>,
+              ).cast<String, String>(),
+          date: Dates.fromStringToDate(element[DbConsts.idOldDate]));
+
+      Data.listeMots.add(toAdd);
+
+      // TODO Add an error if a word has a -1 id or "erreur" somewhere
+      if (toAdd.id == -1 || toAdd.mot == "erreur" || toAdd.definition == "erreur" || toAdd.traductions == {"EN": "Défaut", "RU": "Défaut"}) {
+        debugPrintStack(label: "[app] Null field while loading words");
+      }
     }
 
     // Les trie par date
+    Data.listeMots.sort((a, b) => a.id.compareTo(b.id),);
+
+    /* OLD
     Data.listeMots.sort((a, b) {
       switch (Dates.comparerDates(dateRef: a.date, dateChecked: b.date)) {
         case ComparaisonDates.anterieur:
@@ -43,7 +70,25 @@ abstract class InitFirebase {
         case ComparaisonDates.ulterieur:
           return -1;
       }
-    });
+    }); */ // OLD fin
+
+    // TODO remove this as it was used to convert the old list
+    /*
+    for (int i = 0; i < Data.listeMots.length; i++) {
+
+      Mot mot = Data.listeMots[i];
+
+      MotNouveau nm = MotNouveau(id: i, mot: mot.mot, definition: mot.definition, traductions: mot.traductions, date: mot.date);
+      dataBase.collection(DbConsts.idListeMotsNouveaux).doc(i.toString()).set({
+        DbConsts.idId: nm.id,
+        DbConsts.idMot: nm.mot,
+        DbConsts.idDef: nm.definition,
+        DbConsts.idTraductions: nm.traductions,
+        DbConsts.idOldDate: Dates.fromDateToString(nm.date)
+      });
+    }*/
+
+    
   }
 
   // Inscrit le statut premium
@@ -71,14 +116,14 @@ abstract class InitFirebase {
     await doesUserExists();
 
     Map<String, bool> toSend = Data.listeMotsUser.map(
-      (key, value) => MapEntry(Dates.fromDateToString(key), value),
+      (key, value) => MapEntry(key.toString(), value),
     );
 
     // Envoi
     await InitFirebase.dataBase
         .collection(DbConsts.idUsers)
         .doc(FirebaseAuth.instance.currentUser!.uid)
-        .update({DbConsts.idMotsFaits: toSend});
+        .update({DbConsts.idMotsNFaits: toSend});
   }
 
   // Vérification que l'utilisateur existe, sinon création de son fichier
@@ -139,22 +184,52 @@ abstract class InitFirebase {
     // Statut premium
     Data.isPremium = retrieved[DbConsts.idPremium];
 
+    final data = retrieved.data();
+
+    // Vérifie que ses données ont été mises à jour
+    if (data != null && !data.containsKey(DbConsts.idMotsNFaits)) {
+    
+      debugPrintStack(label: "[app] Trying to update data for user: ${FirebaseAuth.instance.currentUser!.uid}");
+
+      Map<String, bool> nm = {};
+      Map<String, bool> om = (retrieved[DbConsts.idMotsFaits] as Map<String, dynamic>).map((key, value) => MapEntry(key, value as bool),);
+
+      for (var element in om.entries) {
+        nm.putIfAbsent(
+          Data.listeMots.singleWhere((t) => element.key == Dates.fromDateToString(t.date)).id.toString(),
+          () => element.value);
+      }
+
+      InitFirebase.dataBase.collection(DbConsts.idUsers).doc(FirebaseAuth.instance.currentUser!.uid).update({
+        DbConsts.idCurrentUser: FirebaseAuth.instance.currentUser!.uid,
+        DbConsts.idMotsNFaits: nm,
+        DbConsts.idPremium: Data.isPremium,
+        DbConsts.idMotsFaits: om
+      });
+
+    }
+
     // Reformate les String en dates
+    /*
     Data.listeMotsUser =
         (retrieved[DbConsts.idMotsFaits] as Map<String, dynamic>).map(
           (key, value) =>
               MapEntry(Dates.fromStringSlashToDate(key), value as bool),
-        );
+        );*/
+
+    Data.listeMotsUser = (retrieved[DbConsts.idMotsNFaits] as Map<String, dynamic>).map((key, value) => MapEntry(int.parse(key), value as bool));
 
     // Met à jour le statut de chaque mot selon cette liste
     for (var mot in Data.listeMots) {
-      if (Data.listeMotsUser[mot.date] != null) {
+      if (Data.listeMotsUser[mot.id] != null) {
         mot.fait =
-            Data.listeMotsUser[mot.date]! ? MotStatut.reussi : MotStatut.rate;
+            Data.listeMotsUser[mot.id]! ? MotStatut.reussi : MotStatut.rate;
       } else {
         mot.fait = MotStatut.pasOuvert;
       }
     }
+
+    Mot.setFirstAvailableID();
 
     // S'occupe des stats
     Stats.nbrMotsEssayes = Data.listeMotsUser.length;
