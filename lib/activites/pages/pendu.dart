@@ -493,6 +493,9 @@ class ProviderPendu with ChangeNotifier {
     // Met à jour le prochain ID disponible
     Mot.setFirstAvailableID();
 
+    // Set la date
+    Data.setDateLastWordDone();
+
     // Met les stats à jour
     Stats.nbrMotsEssayes++;
     if (motStatut == MotStatut.reussi) Stats.nbrMotsDevines++;

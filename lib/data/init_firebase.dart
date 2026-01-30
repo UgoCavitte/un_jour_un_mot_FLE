@@ -13,27 +13,6 @@ abstract class InitFirebase {
   
   // Récupère les mots depuis la base de données
   static Future<void> getMots() async {
-    /*OLD
-    QuerySnapshot<Map<String, dynamic>> retrieved =
-        await dataBase.collection(DbConsts.idListeMots).get();
-
-    // Réinitialise la liste des mots au cas où elle n'était pas vide
-    Data.listeMots.clear();
-
-    // Regarde tous les mots de la base de données
-    for (var element in retrieved.docs) {
-      Data.listeMots.add(
-        Mot(
-          date: Dates.fromStringToDate(element.id), // l'id est la date
-          mot: element[DbConsts.idMot] ?? "Défaut",
-          definition: element[DbConsts.idDef] ?? "Défaut",
-          traductions:
-              Map.from(
-                (element[DbConsts.idTraductions] ?? {"EN": "Défaut", "RU": "Défaut"}) as Map<String, dynamic>,
-              ).cast<String, String>(),
-        ),
-      );
-    }*/ // OLD END
 
     var retrieved = await dataBase.collection(DbConsts.idListeMotsNouveaux).get();
 
@@ -59,35 +38,6 @@ abstract class InitFirebase {
 
     // Les trie par date
     Data.listeMots.sort((a, b) => a.id.compareTo(b.id),);
-
-    /* OLD
-    Data.listeMots.sort((a, b) {
-      switch (Dates.comparerDates(dateRef: a.date, dateChecked: b.date)) {
-        case ComparaisonDates.anterieur:
-          return 1;
-        case ComparaisonDates.egal:
-          return 0;
-        case ComparaisonDates.ulterieur:
-          return -1;
-      }
-    }); */ // OLD fin
-
-    // TODO remove this as it was used to convert the old list
-    /*
-    for (int i = 0; i < Data.listeMots.length; i++) {
-
-      Mot mot = Data.listeMots[i];
-
-      MotNouveau nm = MotNouveau(id: i, mot: mot.mot, definition: mot.definition, traductions: mot.traductions, date: mot.date);
-      dataBase.collection(DbConsts.idListeMotsNouveaux).doc(i.toString()).set({
-        DbConsts.idId: nm.id,
-        DbConsts.idMot: nm.mot,
-        DbConsts.idDef: nm.definition,
-        DbConsts.idTraductions: nm.traductions,
-        DbConsts.idOldDate: Dates.fromDateToString(nm.date)
-      });
-    }*/
-
     
   }
 
@@ -200,23 +150,21 @@ abstract class InitFirebase {
           () => element.value);
       }
 
-      InitFirebase.dataBase.collection(DbConsts.idUsers).doc(FirebaseAuth.instance.currentUser!.uid).update({
+      await dataBase.collection(DbConsts.idUsers).doc(FirebaseAuth.instance.currentUser!.uid).update({
         DbConsts.idCurrentUser: FirebaseAuth.instance.currentUser!.uid,
         DbConsts.idMotsNFaits: nm,
         DbConsts.idPremium: Data.isPremium,
-        DbConsts.idMotsFaits: om
+        DbConsts.idLastDate: Dates.fromDateToString(Data.lastDate)
       });
+
+      retrieved = await InitFirebase.dataBase
+            .collection(DbConsts.idUsers)
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .get();
 
     }
 
     // Reformate les String en dates
-    /*
-    Data.listeMotsUser =
-        (retrieved[DbConsts.idMotsFaits] as Map<String, dynamic>).map(
-          (key, value) =>
-              MapEntry(Dates.fromStringSlashToDate(key), value as bool),
-        );*/
-
     Data.listeMotsUser = (retrieved[DbConsts.idMotsNFaits] as Map<String, dynamic>).map((key, value) => MapEntry(int.parse(key), value as bool));
 
     // Met à jour le statut de chaque mot selon cette liste
@@ -229,6 +177,12 @@ abstract class InitFirebase {
       }
     }
 
+    // Last Date
+    // Skip if equals to 1977
+    if (!(retrieved[DbConsts.idLastDate] as String == Dates.fromDateToString(DateTime(1977)))) {
+      Data.lastDate = Dates.fromStringSlashToDate(retrieved[DbConsts.idLastDate] as String);
+    }
+
     Mot.setFirstAvailableID();
 
     // S'occupe des stats
@@ -239,5 +193,18 @@ abstract class InitFirebase {
     }
 
     return;
+  }
+
+  static Future<void> updateLastDate () {
+    String newDate = Dates.fromDateToString(DateTime.now());
+
+    dataBase.collection(DbConsts.idUsers).doc(FirebaseAuth.instance.currentUser!.uid).update({
+        DbConsts.idCurrentUser: FirebaseAuth.instance.currentUser!.uid,
+        DbConsts.idMotsNFaits: Data.listeMotsUser.map((k, v) => MapEntry(k.toString(), v)),
+        DbConsts.idPremium: Data.isPremium,
+        DbConsts.idLastDate: newDate
+      });
+
+      return Future(() {});
   }
 }

@@ -16,6 +16,7 @@ abstract class DbConsts {
   static const String idPremium = "premium";
   static const String idMotsFaits = "motsFaits";
   static const String idMotsNFaits = "motsNFaits";
+  static const String idLastDate = "ld";
 
   // Concernant PayPal
   static const String idProducts = "products";

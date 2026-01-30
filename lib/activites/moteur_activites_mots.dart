@@ -154,6 +154,9 @@ class MoteurActivitesMots extends StatelessWidget {
         // Puis on fait la sauvegarde
         await InitFirebase.enregistrerMotsFaits();
 
+        // Date de la dernière activité
+        Data.setDateLastWordDone();
+
         // Utiliser cette fonction plutôt que "pop" permet de rafraîchir la page
         nav.pushAndRemoveUntil(
           MaterialPageRoute(

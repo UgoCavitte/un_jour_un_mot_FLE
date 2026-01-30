@@ -5,6 +5,7 @@ import 'package:un_jour_un_mot/data/gestion_memoire.dart';
 import 'package:un_jour_un_mot/data/init_firebase.dart';
 import 'package:un_jour_un_mot/global_providers/provider_connect.dart';
 import 'package:un_jour_un_mot/main.dart';
+import 'package:un_jour_un_mot/misc/dates.dart';
 import 'package:un_jour_un_mot/objects/mot.dart';
 
 enum LoadingStatus { initialisation, tutoriel, rgpd, charge }
@@ -34,9 +35,9 @@ abstract class Data {
   // true = faut montrer, false = faut pas montrer
   static bool tutorielDebut = true;
 
-  static int firstAvailableID = -1; // TODO set this
+  static int firstAvailableID = -1; // TODO Use this
 
-  static DateTime? lastDate; // TODO set this
+  static DateTime lastDate = DateTime(1977); // TODO Use this
 
   ///////////////////////////////////////////////////////////////
   ////////////////////////// FONCTIONS //////////////////////////
@@ -81,5 +82,10 @@ abstract class Data {
     await Login.autoConnect();
     Data.etapeInitialisation = EtapeInitialisation.fini;
     provider.nextStep();
+  }
+
+  static void setDateLastWordDone () {
+      lastDate = DateTime.now();
+      InitFirebase.updateLastDate();
   }
 }
