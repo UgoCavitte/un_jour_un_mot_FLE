@@ -88,6 +88,7 @@ const String stringObligationConnexion =
     "Veuillez d'abord vous connecter en cliquant sur le gros bouton rouge";
 const String stringPaiementWeb =
     "Pour cette version de l;application, les paiements se font directement sur le site. En cliquant sur \"Compris\", vous serez redirigé sur la page de paiement avec vos données d'utilisateur.\nVous pouvez annuler en cliquant sur \"Annuler\".";
+const String stringLimiteQuotidienne = "Vous avez déjà fait un mot aujourd'hui. Vous pouvez acheter le statut premium à vie ou bien revenir demain ;)";
 
 RichText textParametresContacts = RichText(
   textAlign: TextAlign.center,

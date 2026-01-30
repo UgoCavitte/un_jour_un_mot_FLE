@@ -1,4 +1,5 @@
 import 'package:confirm_dialog/confirm_dialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:un_jour_un_mot/activites/moteur_activites_mots.dart';
@@ -146,6 +147,19 @@ class LigneMot extends StatelessWidget {
             textCancel: MyTextGeneralTitre(""),
           ) &&
           context.mounted) {
+        return;
+      }
+    }
+
+    // Vérifie que l'utilisateur n'a pas déjà fait de mot aujourd'hui s'il n'est pas premium    
+    if (Dates.fromDateToString(DateTime.now()) == Dates.fromDateToString(Data.lastDate) && !Data.isPremium) {
+      if (await confirm(
+            context,
+            content: MyTextGeneral(stringLimiteQuotidienne),
+            textOK: MyTextGeneralTitre(stringCompris),
+            textCancel: MyTextGeneralTitre(""),
+          ) &&
+          context.mounted){
         return;
       }
     }
