@@ -15,7 +15,6 @@ import 'package:un_jour_un_mot/constantes/constantes_icones.dart';
 import 'package:un_jour_un_mot/constantes/constantes_textes.dart';
 import 'package:un_jour_un_mot/data/data.dart';
 import 'package:un_jour_un_mot/data/init_firebase.dart';
-import 'package:un_jour_un_mot/misc/dates.dart';
 import 'package:un_jour_un_mot/objects/mot.dart';
 import 'package:un_jour_un_mot/pages/page_home.dart';
 
@@ -98,7 +97,7 @@ class MoteurActivitesMots extends StatelessWidget {
   }
 
   String _getTitreAppBarActivite() {
-    return "Mot du jour - ${Dates.formaterDatePourAffichage(mot.date)}";
+    return "Mot #${mot.id}";
   }
 
   void _backButton(BuildContext context) async {

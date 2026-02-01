@@ -5,9 +5,9 @@ import 'package:un_jour_un_mot/constantes/constantes_padding_margin.dart';
 import 'package:un_jour_un_mot/constantes/constantes_textes.dart';
 
 const String texteIntroTitre =
-    "Bienvenue dans ce module pour le mot du jour du ";
+    "Bienvenue dans ce module pour le mot numéro ";
 const String texteIntroExplication =
-    "Ce module comprend différentes activités. Vous devrez d'abord deviner le mot du jour via un pendu, puis vous aurez des explications à son sujet, et enfin des activités permettant de le mémoriser.";
+    "Ce module comprend différentes activités. Vous devrez d'abord deviner le mot via un pendu, puis vous aurez des explications à son sujet, et enfin des activités permettant de le mémoriser.";
 const String texteIntroAppuyez = "Appuyez sur le bouton pour commencer !";
 const String texteIntroSuivant = "Suivant";
 
@@ -31,17 +31,17 @@ const String texteCompleterSuite = "Suite";
 
 // Jeu trouve orthographe
 const String texteTrouveOrthographeConsigne =
-    "Retrouvez la bonne orthographe du mot du jour";
+    "Retrouvez la bonne orthographe du mot";
 const String texteTrouveOrthographeSuite = "Suite";
 
 // Jeu réécrire
 const String texteReecrireConsigne =
-    "Réécrivez le mot du jour avec les lettres proposées";
+    "Réécrivez le mot avec les lettres proposées";
 
 // Fin
 const String texteFiniSortir = "Sortir";
-const String texteFiniTitre = "Et c'est fini pour le ";
-const String texteFiniCorps1 = 'Bravo ! Vous avez appris le mot du jour, "';
+const String texteFiniTitre = "Et c'est fini pour le mot numéro ";
+const String texteFiniCorps1 = 'Bravo ! Vous avez appris un nouveau mot, "';
 const String texteFiniCorps2 = '" !';
 
 // Textes plus gros

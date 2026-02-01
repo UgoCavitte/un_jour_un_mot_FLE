@@ -5,12 +5,11 @@ import 'package:un_jour_un_mot/composants/animations/icon_check_animee.dart';
 import 'package:un_jour_un_mot/composants/my_buttons.dart';
 import 'package:un_jour_un_mot/composants/my_texts.dart';
 import 'package:un_jour_un_mot/constantes/constantes_padding_margin.dart';
-import 'package:un_jour_un_mot/misc/dates.dart';
 import 'package:un_jour_un_mot/objects/mot.dart';
 import 'package:un_jour_un_mot/pages/page_home.dart';
 
 class Fin extends StatelessWidget {
-  final Mot mot;
+  final MotNouveau mot;
 
   const Fin({super.key, required this.mot});
 
@@ -51,7 +50,7 @@ class Fin extends StatelessWidget {
       child: Padding(
         padding: ConstantesPaddingMargin.paddingGeneralElements,
         child: MyTextGeneralTitre(
-          texteFiniTitre + Dates.formaterDatePourAffichage(mot.date),
+          texteFiniTitre + mot.id.toString(),
         ),
       ),
     );
