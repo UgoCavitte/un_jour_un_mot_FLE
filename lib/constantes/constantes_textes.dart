@@ -66,7 +66,7 @@ const String stringChargementRGPD =
 const String stringFinir = "Finir";
 const String stringSeConnecter = "Se connecter";
 const String stringConnexionEnCours = "Connexion en cours...";
-const String stringFaireLeMotDuJour = "Faire le mot du jour";
+const String stringFaireLeMotDuJour = "Faire le prochain mot disponible";
 const String stringVeuillezVousConnecter =
     "Veuillez vous connecter pour avoir accès aux différents mots du jour";
 const String stringOui = "Oui";
