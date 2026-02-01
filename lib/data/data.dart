@@ -5,7 +5,6 @@ import 'package:un_jour_un_mot/data/gestion_memoire.dart';
 import 'package:un_jour_un_mot/data/init_firebase.dart';
 import 'package:un_jour_un_mot/global_providers/provider_connect.dart';
 import 'package:un_jour_un_mot/main.dart';
-import 'package:un_jour_un_mot/misc/dates.dart';
 import 'package:un_jour_un_mot/objects/mot.dart';
 
 enum LoadingStatus { initialisation, tutoriel, rgpd, charge }

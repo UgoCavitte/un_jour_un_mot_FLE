@@ -1,5 +1,4 @@
 import 'package:confirm_dialog/confirm_dialog.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:un_jour_un_mot/activites/moteur_activites_mots.dart';

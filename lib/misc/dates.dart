@@ -1,5 +1,3 @@
-import 'package:un_jour_un_mot/objects/mot.dart';
-
 enum ComparaisonDates { anterieur, egal, ulterieur }
 
 enum PartiesDate { annee, mois, jour }

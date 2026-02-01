@@ -150,10 +150,9 @@ abstract class InitFirebase {
           () => element.value);
       }
 
+      // Sets words in the new format and sets a "last date"
       await dataBase.collection(DbConsts.idUsers).doc(FirebaseAuth.instance.currentUser!.uid).update({
-        DbConsts.idCurrentUser: FirebaseAuth.instance.currentUser!.uid,
         DbConsts.idMotsNFaits: nm,
-        DbConsts.idPremium: Data.isPremium,
         DbConsts.idLastDate: Dates.fromDateToString(Data.lastDate)
       });
 
@@ -164,7 +163,7 @@ abstract class InitFirebase {
 
     }
 
-    // Reformate les String en dates
+    // Reformate les String en int
     Data.listeMotsUser = (retrieved[DbConsts.idMotsNFaits] as Map<String, dynamic>).map((key, value) => MapEntry(int.parse(key), value as bool));
 
     // Met à jour le statut de chaque mot selon cette liste
@@ -199,9 +198,6 @@ abstract class InitFirebase {
     String newDate = Dates.fromDateToString(DateTime.now());
 
     dataBase.collection(DbConsts.idUsers).doc(FirebaseAuth.instance.currentUser!.uid).update({
-        DbConsts.idCurrentUser: FirebaseAuth.instance.currentUser!.uid,
-        DbConsts.idMotsNFaits: Data.listeMotsUser.map((k, v) => MapEntry(k.toString(), v)),
-        DbConsts.idPremium: Data.isPremium,
         DbConsts.idLastDate: newDate
       });
 
