@@ -34,9 +34,9 @@ abstract class Data {
   // true = faut montrer, false = faut pas montrer
   static bool tutorielDebut = true;
 
-  static int firstAvailableID = -1; // TODO Use this
+  static int firstAvailableID = -1;
 
-  static DateTime lastDate = DateTime(1977); // TODO Use this
+  static DateTime lastDate = DateTime(1977);
 
   ///////////////////////////////////////////////////////////////
   ////////////////////////// FONCTIONS //////////////////////////

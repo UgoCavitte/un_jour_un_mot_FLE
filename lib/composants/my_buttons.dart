@@ -87,13 +87,8 @@ class MyButtonDejaFait extends IconButton {
 class MyButtonLancerMot extends IconButton {
   MyButtonLancerMot({
     super.key,
-    required bool premiumSiPasse,
-    required VoidCallback? onPressed,
+    required super.onPressed,
   }) : super(
-         icon:
-             premiumSiPasse
-                 ? ConstantesIcones.iconePlayVerte
-                 : ConstantesIcones.iconePlayGrisee,
-         onPressed: premiumSiPasse ? onPressed : () {},
+         icon: ConstantesIcones.iconePlayVerte,
        );
 }

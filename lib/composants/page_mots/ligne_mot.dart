@@ -123,7 +123,6 @@ class LigneMot extends StatelessWidget {
       return Padding(
         padding: ConstantesPaddingMargin.paddingElementLigneTableau,
         child: MyButtonLancerMot(
-          premiumSiPasse: true, // TODO check this
           onPressed: () => lancerMot(mot: mot, context: context),
         ),
       );
