@@ -12,6 +12,7 @@ enum FlushBarMessage {
   pasDeMotDuJour,
   erreurDeConnexion,
   failedToCreatePaymentIntent,
+  erreurChargementMots
 }
 
 // Map des messages
@@ -26,6 +27,7 @@ const Map _messageToText = {
   FlushBarMessage.penduMotFaux: _stringPenduMotFaux,
   FlushBarMessage.pasDeMotDuJour: _stringPasDeMotDuJour,
   FlushBarMessage.erreurDeConnexion: _stringErreurDeConnexion,
+  FlushBarMessage.erreurChargementMots: _stringErreurChargementMots,
 };
 
 // Messages
@@ -39,6 +41,7 @@ const String _stringPenduLettreFausse = "Lettre fausse";
 const String _stringPenduMotFaux = "Mot faux";
 const String _stringPasDeMotDuJour = "Aucun mot n'est disponible pour le moment. Vous avez tout fait, bravo !";
 const String _stringErreurDeConnexion = "Connexion impossible.";
+const String _stringErreurChargementMots = "Erreur lors du chargement des mots.";
 
 // Permet de choisir la couleur et la durée
 enum FlushBarTypeMessage { classique, rouge, vert }
