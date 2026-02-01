@@ -3,7 +3,7 @@ description: "Un jour un mot - FLE"
 
 publish_to: 'none'
 
-version: 1.0.0+13
+version: 2.0.0+14
 
 environment:
   sdk: ^3.7.0-257.0.dev

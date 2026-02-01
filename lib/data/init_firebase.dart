@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:un_jour_un_mot/composants/my_flush_bars.dart';
 import 'package:un_jour_un_mot/data/data.dart';
 import 'package:un_jour_un_mot/data/db_consts.dart';
-import 'package:un_jour_un_mot/data/stats.dart';
 import 'package:un_jour_un_mot/misc/dates.dart';
 import 'package:un_jour_un_mot/objects/mot.dart';
 
@@ -187,13 +186,6 @@ abstract class InitFirebase {
     }
 
     Mot.setFirstAvailableID();
-
-    // S'occupe des stats
-    Stats.nbrMotsEssayes = Data.listeMotsUser.length;
-    Stats.nbrMotsDevines = 0;
-    for (var motFait in Data.listeMotsUser.values) {
-      if (motFait) Stats.nbrMotsDevines++;
-    }
 
     return;
   }

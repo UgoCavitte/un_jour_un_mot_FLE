@@ -15,7 +15,6 @@ import 'package:un_jour_un_mot/constantes/constantes_padding_margin.dart';
 import 'package:un_jour_un_mot/constantes/constantes_textes.dart';
 import 'package:un_jour_un_mot/data/data.dart';
 import 'package:un_jour_un_mot/data/init_firebase.dart';
-import 'package:un_jour_un_mot/data/stats.dart';
 import 'package:un_jour_un_mot/misc/lettres.dart';
 import 'package:un_jour_un_mot/objects/mot.dart';
 
@@ -495,10 +494,6 @@ class ProviderPendu with ChangeNotifier {
 
     // Set la date
     Data.setDateLastWordDone();
-
-    // Met les stats à jour
-    Stats.nbrMotsEssayes++;
-    if (motStatut == MotStatut.reussi) Stats.nbrMotsDevines++;
 
     // Puis on fait la sauvegarde
     await InitFirebase.enregistrerMotsFaits();
