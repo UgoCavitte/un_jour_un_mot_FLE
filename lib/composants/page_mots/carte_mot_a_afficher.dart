@@ -3,6 +3,7 @@ import 'package:un_jour_un_mot/composants/page_mots/ligne_mot.dart';
 import 'package:un_jour_un_mot/constantes/constantes_couleurs.dart';
 import 'package:un_jour_un_mot/constantes/constantes_padding_margin.dart';
 import 'package:un_jour_un_mot/data/data.dart';
+import 'package:un_jour_un_mot/objects/mot.dart';
 
 /*
  * Container avec les lignes des mots du jour
@@ -27,22 +28,10 @@ class CarteMotsAAfficher extends StatelessWidget {
     );
   }
 
+  // Done words are shown + the one doable + 3
   List<Widget> _getElements() {
-    return Data.listeMots.map((mot) => LigneMot(mot: mot)).toList();
+    List<MotNouveau> thatCanBeShown = Data.listeMots.where((mot) => mot.id <= Data.firstAvailableID + 3).toList();
 
-    // TODO reorganize words
-    /*
-    DateTime maxDate = DateTime.now().add(
-      Duration(days: maxJoursSuivantsAAfficher),
-    );
-
-    return Data.listeMots
-        .where(
-          (mot) =>
-              Dates.comparerDates(dateRef: maxDate, dateChecked: mot.date) !=
-              ComparaisonDates.ulterieur,
-        )
-        .map((mot) => LigneMot(mot: mot))
-        .toList().reversed.toList();*/
+    return thatCanBeShown.map((mot) => LigneMot(mot: mot)).toList();
   }
 }
