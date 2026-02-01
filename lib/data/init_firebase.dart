@@ -102,7 +102,8 @@ abstract class InitFirebase {
           .set({
             DbConsts.idCurrentUser: FirebaseAuth.instance.currentUser!.uid,
             DbConsts.idPremium: false,
-            DbConsts.idMotsFaits: <String, bool>{},
+            DbConsts.idMotsNFaits: <String, bool>{},
+            DbConsts.idLastDate: Dates.fromDateToString(DateTime(1977)),
           });
     }
     // Le compte Google est null
