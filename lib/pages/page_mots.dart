@@ -15,6 +15,7 @@ import 'package:un_jour_un_mot/data/data.dart';
 import 'package:un_jour_un_mot/data/stats.dart';
 import 'package:un_jour_un_mot/global_providers/provider_connect.dart';
 import 'package:un_jour_un_mot/global_providers/provider_loaded_banner.dart';
+import 'package:un_jour_un_mot/misc/dates.dart';
 import 'package:un_jour_un_mot/objects/mot.dart';
 import 'package:un_jour_un_mot/pages/page_home.dart';
 
@@ -190,6 +191,19 @@ class PageMots extends StatelessWidget {
                     textCancel: MyTextGeneralTitre(""),
                   ) &&
                   context.mounted) {
+                return;
+              }
+            }
+
+            // Vérifie que l'utilisateur n'a pas déjà fait de mot aujourd'hui
+            if (Dates.fromDateToString(DateTime.now()) == Dates.fromDateToString(Data.lastDate) && !Data.isPremium) {
+              if (await confirm(
+                    context,
+                    content: MyTextGeneral(stringLimiteQuotidienne),
+                    textOK: MyTextGeneralTitre(stringCompris),
+                    textCancel: MyTextGeneralTitre(""),
+                  ) &&
+                  context.mounted){
                 return;
               }
             }
