@@ -24,13 +24,14 @@ class CarteMotsAAfficher extends StatelessWidget {
         gradient: ConstantesCouleurs.gradientBleuBleuClair,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: ListView(shrinkWrap: true, children: _getElements()),
+      child: ListView(shrinkWrap: true, reverse: true, children: _getElements().reversed.toList()),
     );
   }
 
-  // Done words are shown + the one doable + 3
+  // Done words are shown + the one doable + 2
+  // The +2 lets us simply put the scrollable element at the bottom not to search for the place in the long list to show
   List<Widget> _getElements() {
-    List<MotNouveau> thatCanBeShown = Data.listeMots.where((mot) => mot.id <= Data.firstAvailableID + 3).toList();
+    List<MotNouveau> thatCanBeShown = Data.listeMots.where((mot) => mot.id <= Data.firstAvailableID + 2).toList();
 
     return thatCanBeShown.map((mot) => LigneMot(mot: mot)).toList();
   }
