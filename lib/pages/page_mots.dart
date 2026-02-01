@@ -157,7 +157,6 @@ class PageMots extends StatelessWidget {
     );
   }
 
-  // TODO
   Widget _boutonMotDuJour(BuildContext context) {
     return SizedBox(
       width: double.infinity,
@@ -166,14 +165,18 @@ class PageMots extends StatelessWidget {
         couleur: MyButtonColor.gradientBleu,
         onPressed: () async {
           try {
-            // Trouve le mot avec la date du jour
+            // Trouve le mot avec l'id suivant faisable
+            if (Data.firstAvailableID == -2) {
+              MyFlushBar(
+                message: FlushBarMessage.pasDeMotDuJour,
+                typeMessage: FlushBarTypeMessage.rouge,
+              ).show();
+              return;
+            }
+
             MotNouveau motDuJour = Data.listeMots.firstWhere(
               (test) =>
-                  Dates.comparerDates(
-                    dateRef: test.date,
-                    dateChecked: DateTime.now(),
-                  ) ==
-                  ComparaisonDates.egal,
+                  test.id == Data.firstAvailableID
             );
 
             // Vérifie que l'utilisateur est connecté

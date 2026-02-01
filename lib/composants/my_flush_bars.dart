@@ -37,7 +37,7 @@ const String _stringPenduMotDejaPropose = "Vous avez déjà proposé ce mot";
 const String _stringPenduLettreBonne = "Lettre bonne !";
 const String _stringPenduLettreFausse = "Lettre fausse";
 const String _stringPenduMotFaux = "Mot faux";
-const String _stringPasDeMotDuJour = "Aucun mot du jour n'est disponible.";
+const String _stringPasDeMotDuJour = "Aucun mot n'est disponible pour le moment. Vous avez tout fait, bravo !";
 const String _stringErreurDeConnexion = "Connexion impossible.";
 
 // Permet de choisir la couleur et la durée
