@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:un_jour_un_mot/composants/my_flush_bars.dart';
 import 'package:un_jour_un_mot/data/data.dart';
 import 'package:un_jour_un_mot/data/db_consts.dart';
 import 'package:un_jour_un_mot/data/stats.dart';
@@ -30,8 +31,10 @@ abstract class InitFirebase {
 
       Data.listeMots.add(toAdd);
 
-      // TODO Add an error if a word has a -1 id or "erreur" somewhere
       if (toAdd.id == -1 || toAdd.mot == "erreur" || toAdd.definition == "erreur" || toAdd.traductions == {"EN": "Défaut", "RU": "Défaut"}) {
+
+        MyFlushBar(message: FlushBarMessage.erreurChargementMots, typeMessage: FlushBarTypeMessage.rouge).show();
+
         debugPrintStack(label: "[app] Null field while loading words");
       }
     }
