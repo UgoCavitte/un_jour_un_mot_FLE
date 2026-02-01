@@ -15,7 +15,6 @@ import 'package:un_jour_un_mot/data/data.dart';
 import 'package:un_jour_un_mot/data/stats.dart';
 import 'package:un_jour_un_mot/global_providers/provider_connect.dart';
 import 'package:un_jour_un_mot/global_providers/provider_loaded_banner.dart';
-import 'package:un_jour_un_mot/misc/dates.dart';
 import 'package:un_jour_un_mot/objects/mot.dart';
 import 'package:un_jour_un_mot/pages/page_home.dart';
 
