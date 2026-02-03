@@ -180,10 +180,7 @@ class PageMots extends StatelessWidget {
             );
 
             // Vérifie que l'utilisateur est connecté
-            if (!Provider.of<ProviderConnect>(
-              context,
-              listen: false,
-            ).isUserConnected) {
+            if (!Provider.of<ProviderConnect>(context, listen: false,).isUserConnected || Data.firstAvailableID == -1) {
               if (await confirm(
                     context,
                     content: MyTextGeneral(stringObligationConnexion),
